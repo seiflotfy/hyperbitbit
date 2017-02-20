@@ -32,7 +32,8 @@ hbb.Get()
 
 ## Initial Results
 From [demo](demo)
-```2017/02/20 12:44:46 
+```
+2017/02/20 12:44:46 
         file:  data/words-1 
         exact: 150 
         estimate: 1473 
