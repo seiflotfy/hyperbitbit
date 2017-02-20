@@ -31,7 +31,7 @@ hbb.Get()
 ```
 
 ## Initial Results
-From [demo](demo)
+From [demo](demo/main.go)
 ```
 2017/02/20 12:44:46 
         file:  data/words-1 
