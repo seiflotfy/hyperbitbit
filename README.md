@@ -26,8 +26,6 @@ hbb := hyperbitbit.NewHyperBitBit(6)
 // Add value to HyperBitBit
 hbb.Add([]byte("hello"))
 
-
 // Returns cardinality
 hbb.Get()
-
 ```
