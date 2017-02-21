@@ -19,7 +19,7 @@ func main() {
 	}
 
 	totalUnique := map[string]bool{}
-	totalHBB := hyperbitbit.NewHyperBitBit(6)
+	totalHBB := hyperbitbit.New()
 
 	for _, f := range files {
 		f, err := os.Open(f)
@@ -30,7 +30,7 @@ func main() {
 		reader := bufio.NewReader(f)
 		unique := map[string]bool{}
 
-		hbb := hyperbitbit.NewHyperBitBit(6)
+		hbb := hyperbitbit.New()
 
 		for {
 			text, _, err := reader.ReadLine()
