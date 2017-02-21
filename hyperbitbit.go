@@ -17,12 +17,10 @@ func p(sketch uint64) uint64 {
 }
 
 func r(x uint64) uint64 {
-	// Get position of first 0
-	r := uint64(0)
-	for i := uint8(0); i < 64; i++ {
-		if (x>>i)%2 == 0 {
-			break
-		}
+	// Get position of first 0 from the right
+	var r uint64
+	for x&0x0000000000000001 == 1 {
+		x >>= 1
 		r++
 	}
 	return uint64(r)
@@ -51,7 +49,7 @@ func New() *HyperBitBit {
 
 // Add a value ([]byte) to the sketch
 func (hbb *HyperBitBit) Add(val []byte) {
-	x := metro.Hash64([]byte(val), uint64(val[0]))
+	x := metro.Hash64([]byte(val), 42)
 	k := hash2(x, 64)
 	r := r(x)
 
