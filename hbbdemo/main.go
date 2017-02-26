@@ -44,12 +44,11 @@ func main() {
 		}
 
 		est := hbb.Get()
-		ratio := fmt.Sprintf("%2f%%", 100*(1-float64(len(unique))/float64(est)))
+		ratio := fmt.Sprintf("%.2f%%", 100*(1-float64(len(unique))/float64(est)))
 		log.Println("\n\tfile: ", f.Name(), "\n\texact:", len(unique), "\n\testimate:", est, "\n\tratio:", ratio)
 	}
 
 	est := totalHBB.Get()
-	ratio := fmt.Sprintf("%2f%%", 100*(1-float64(len(totalUnique))/float64(est)))
-	fmt.Println("THIS IS WAAAAAY OFF, DUE TO REINSERTIONS --> Needs FIXING")
+	ratio := fmt.Sprintf("%.2f%%", 100*(1-float64(len(totalUnique))/float64(est)))
 	log.Println("\n\ttotal\n\texact:", len(totalUnique), "\n\testimate:", est, "\n\tratio:", ratio)
 }

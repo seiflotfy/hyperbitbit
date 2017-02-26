@@ -1,7 +1,10 @@
 package hyperbitbit
 
 import (
+	"math"
+	"math/rand"
 	"testing"
+	"time"
 )
 
 func TestP(t *testing.T) {
@@ -37,9 +40,47 @@ func TestR(t *testing.T) {
 		0: 0,
 	}
 	for val, expected := range tests {
-		res := r(val)
+		res := rho(val, 58)
 		if res != expected {
 			t.Errorf("Expected %d trailing 1 in %d, got %d", expected, val, res)
+		}
+	}
+}
+
+const letterBytes = "abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ"
+
+var src = rand.NewSource(time.Now().UnixNano())
+
+func RandStringBytesMaskImprSrc(n uint32) string {
+	b := make([]byte, n)
+	for i := uint32(0); i < n; i++ {
+		b[i] = letterBytes[rand.Int()%len(letterBytes)]
+	}
+	return string(b)
+}
+
+func TestCardinality(t *testing.T) {
+	hbb := New()
+
+	step := 10000
+	unique := map[string]bool{}
+
+	for i := 1; len(unique) <= 10000000; i++ {
+		str := RandStringBytesMaskImprSrc(rand.Uint32() % 32)
+		hbb.Add([]byte(str))
+		unique[str] = true
+
+		if len(unique)%step == 0 {
+			exact := len(unique)
+			step *= 10
+			res := int(hbb.Get())
+			ratio := 100 * math.Abs(float64(res-exact)) / float64(exact)
+
+			expectedError := 0.1
+
+			if float64(res) < float64(exact)-(float64(exact)*expectedError) || float64(res) > float64(exact)+(float64(exact)*expectedError) {
+				t.Errorf("Exact %d, got %d which is %.2f%% error", exact, res, ratio)
+			}
 		}
 	}
 }

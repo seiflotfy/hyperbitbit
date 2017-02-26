@@ -8,7 +8,7 @@ import (
 
 func p(sketch uint64) uint64 {
 	var count uint64
-	for i := uint8(0); i < 64; i++ {
+	for i := uint8(0); i < 64 && sketch > 0; i++ {
 		if (sketch>>i)%2 == 1 {
 			count++
 		}
@@ -16,19 +16,12 @@ func p(sketch uint64) uint64 {
 	return count
 }
 
-func r(x uint64) uint64 {
-	// Get position of first 0 from the right
-	var r uint64
-	for x&0x0000000000000001 == 1 {
-		x >>= 1
-		r++
+// Calculate the position of the leftmost 1-bit.
+func rho(val uint64, max uint64) (r uint64) {
+	for r = 0; val&0x1 == 1 && r <= max; r++ {
+		val >>= 1
 	}
-	return uint64(r)
-}
-
-func hash2(x, M uint64) uint64 {
-	m := uint64(math.Log(float64(M)) / math.Log(2))
-	return x >> (M - m)
+	return r
 }
 
 // HyperBitBit sketch for cardinality estimation
@@ -50,8 +43,8 @@ func New() *HyperBitBit {
 // Add a value ([]byte) to the sketch
 func (hbb *HyperBitBit) Add(val []byte) {
 	x := metro.Hash64([]byte(val), 42)
-	k := hash2(x, 64)
-	r := r(x)
+	k := x << 58 >> 58
+	r := rho(x>>6, 58)
 
 	if r > uint64(hbb.lgN) {
 		hbb.sketch = hbb.sketch | (uint64(1) << k)
@@ -68,5 +61,7 @@ func (hbb *HyperBitBit) Add(val []byte) {
 
 // Get returns the estimated number of unique elements added to the sketch
 func (hbb *HyperBitBit) Get() uint64 {
-	return uint64(math.Pow(2, float64(hbb.lgN)+5.4+(float64(p(hbb.sketch))/32.0)))
+	lgN := float64(hbb.lgN)
+	p := float64(p(hbb.sketch))
+	return uint64(math.Pow(2, lgN+5.4+p/32.0))
 }
