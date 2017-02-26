@@ -59,8 +59,8 @@ func (hbb *HyperBitBit) Add(val []byte) {
 	}
 }
 
-// Get returns the estimated number of unique elements added to the sketch
-func (hbb *HyperBitBit) Get() uint64 {
+// Cardinality returns the estimated number of unique elements added to the sketch
+func (hbb *HyperBitBit) Cardinality() uint64 {
 	lgN := float64(hbb.lgN)
 	p := float64(p(hbb.sketch))
 	return uint64(math.Pow(2, lgN+5.4+p/32.0))

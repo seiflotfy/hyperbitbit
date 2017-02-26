@@ -73,7 +73,7 @@ func TestCardinality(t *testing.T) {
 		if len(unique)%step == 0 {
 			exact := len(unique)
 			step *= 10
-			res := int(hbb.Get())
+			res := int(hbb.Cardinality())
 			ratio := 100 * math.Abs(float64(res-exact)) / float64(exact)
 
 			expectedError := 0.1

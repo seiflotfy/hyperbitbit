@@ -43,12 +43,12 @@ func main() {
 			totalHBB.Add([]byte(text))
 		}
 
-		est := hbb.Get()
+		est := hbb.Cardinality()
 		ratio := fmt.Sprintf("%.2f%%", 100*(1-float64(len(unique))/float64(est)))
 		log.Println("\n\tfile: ", f.Name(), "\n\texact:", len(unique), "\n\testimate:", est, "\n\tratio:", ratio)
 	}
 
-	est := totalHBB.Get()
+	est := totalHBB.Cardinality()
 	ratio := fmt.Sprintf("%.2f%%", 100*(1-float64(len(totalUnique))/float64(est)))
 	log.Println("\n\ttotal\n\texact:", len(totalUnique), "\n\testimate:", est, "\n\tratio:", ratio)
 }

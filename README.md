@@ -21,52 +21,52 @@ This is an implementation that still needs iterations and experimentation. Any h
 ```go
 
 // Create HyperBitBit
-hbb := hyperbitbit.NewHyperBitBit(6)
+hbb := hyperbitbit.New()
 
 // Add value to HyperBitBit
 hbb.Add([]byte("hello"))
 
 // Returns cardinality
-hbb.Get()
+hbb.Cardinality()
 ```
 
 ## Initial Results
 From [demo](hbbdemo/main.go)
 ```
-2017/02/20 12:44:46 
-        file:  data/words-1 
-        exact: 150 
-        estimate: 1473 
+2017/02/20 12:44:46
+        file:  data/words-1
+        exact: 150
+        estimate: 1473
         ratio: 89.816701%
-2017/02/20 12:44:46 
-        file:  data/words-2 
-        exact: 1308 
-        estimate: 2039 
+2017/02/20 12:44:46
+        file:  data/words-2
+        exact: 1308
+        estimate: 2039
         ratio: 35.850907%
-2017/02/20 12:44:46 
-        file:  data/words-3 
-        exact: 76205 
-        estimate: 68141 
+2017/02/20 12:44:46
+        file:  data/words-3
+        exact: 76205
+        estimate: 68141
         ratio: -11.834285%
-2017/02/20 12:44:46 
-        file:  data/words-4 
-        exact: 235886 
-        estimate: 244589 
+2017/02/20 12:44:46
+        file:  data/words-4
+        exact: 235886
+        estimate: 244589
         ratio: 3.558214%
-2017/02/20 12:44:47 
-        file:  data/words-5 
-        exact: 349900 
-        estimate: 317192 
+2017/02/20 12:44:47
+        file:  data/words-5
+        exact: 349900
+        estimate: 317192
         ratio: -10.311735%
-2017/02/20 12:44:47 
-        file:  data/words-6 
-        exact: 479829 
-        estimate: 510835 
+2017/02/20 12:44:47
+        file:  data/words-6
+        exact: 479829
+        estimate: 510835
         ratio: 6.069670%
 THIS IS WAAAAAY OFF, DUE TO REINSERTIONS --> Needs FIXING
-2017/02/20 12:44:47 
+2017/02/20 12:44:47
         total
-        exact: 660131 
-        estimate: 1114140 
+        exact: 660131
+        estimate: 1114140
         ratio: 40.749726%
  ```
