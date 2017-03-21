@@ -33,40 +33,39 @@ hbb.Cardinality()
 ## Initial Results
 From [demo](hbbdemo/main.go)
 ```
-2017/02/20 12:44:46
+2017/03/21 23:16:49
         file:  data/words-1
         exact: 150
-        estimate: 1473
-        ratio: 89.816701%
-2017/02/20 12:44:46
+        estimate: 1380
+        ratio: 89.13%
+2017/03/21 23:16:49
         file:  data/words-2
         exact: 1308
-        estimate: 2039
-        ratio: 35.850907%
-2017/02/20 12:44:46
+        estimate: 1869
+        ratio: 30.02%
+2017/03/21 23:16:49
         file:  data/words-3
         exact: 76205
-        estimate: 68141
-        ratio: -11.834285%
-2017/02/20 12:44:46
+        estimate: 62486
+        ratio: -21.96%
+2017/03/21 23:16:49
         file:  data/words-4
         exact: 235886
-        estimate: 244589
-        ratio: 3.558214%
-2017/02/20 12:44:47
+        estimate: 255417
+        ratio: 7.65%
+2017/03/21 23:16:50
         file:  data/words-5
         exact: 349900
         estimate: 317192
-        ratio: -10.311735%
-2017/02/20 12:44:47
+        ratio: -10.31%
+2017/03/21 23:16:50
         file:  data/words-6
         exact: 479829
-        estimate: 510835
-        ratio: 6.069670%
-THIS IS WAAAAAY OFF, DUE TO REINSERTIONS --> Needs FIXING
-2017/02/20 12:44:47
+        estimate: 448578
+        ratio: -6.97%
+2017/03/21 23:16:50
         total
         exact: 660131
-        estimate: 1114140
-        ratio: 40.749726%
+        estimate: 648276
+        ratio: -1.83%
  ```
